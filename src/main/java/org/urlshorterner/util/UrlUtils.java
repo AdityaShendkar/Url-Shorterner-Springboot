@@ -6,5 +6,6 @@ import org.springframework.stereotype.Component;
 public class UrlUtils {
     public boolean isValid(String url){
         return true;
+
     }
 }

@@ -2,6 +2,8 @@ package org.urlshorterner.service;
 
 
 import org.springframework.stereotype.Service;
+import org.urlshorterner.dto.ShortenUrlRequestDto;
+import org.urlshorterner.dto.ShortenUrlResponseDto;
 import org.urlshorterner.entity.UrlEntity;
 import org.urlshorterner.repository.UrlRepository;
 import org.urlshorterner.util.UrlUtils;
@@ -18,7 +20,8 @@ public class UrlService {
         this.urlUtils = urlUtils;
     }
 
-    public String shortenUrl(String url){
+    public ShortenUrlResponseDto shortenUrl(ShortenUrlRequestDto requestDto){
+        String url = requestDto.getUrl();
         boolean isValid = urlUtils.isValid(url);
         if (!isValid){
             throw new RuntimeException("URL is invalid");
@@ -28,6 +31,8 @@ public class UrlService {
         urlEntity.setMainUrl(url);
         urlEntity.setShortCode(shortCode);
         urlRepository.save(urlEntity);
-        return shortCode;
+        return ShortenUrlResponseDto.builder()
+                .shortCode(shortCode)
+                .build();
     }
 }
