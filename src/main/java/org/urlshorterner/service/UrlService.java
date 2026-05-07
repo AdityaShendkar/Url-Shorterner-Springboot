@@ -1,12 +1,15 @@
 package org.urlshorterner.service;
 
 
+import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.stereotype.Service;
 import org.urlshorterner.dto.ShortenUrlRequestDto;
 import org.urlshorterner.dto.ShortenUrlResponseDto;
 import org.urlshorterner.entity.UrlEntity;
 import org.urlshorterner.repository.UrlRepository;
 import org.urlshorterner.util.UrlUtils;
+
+import java.util.random.RandomGenerator;
 
 @Service
 public class UrlService {
@@ -26,7 +29,7 @@ public class UrlService {
         if (!isValid){
             throw new RuntimeException("URL is invalid");
         }
-        String shortCode = "TODO";
+        String shortCode = RandomStringUtils.randomAlphabetic(7);
         UrlEntity urlEntity = new UrlEntity();
         urlEntity.setMainUrl(url);
         urlEntity.setShortCode(shortCode);
