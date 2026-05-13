@@ -19,7 +19,7 @@ public class UrlController {
     }
 
     @PostMapping("/shorten")
-    public ShortenUrlResponseDto shortenURL(@RequestBody ShortenUrlRequestDto requestDto){
+    public ShortenUrlResponseDto shortenURL(@RequestBody ShortenUrlRequestDto requestDto) {
         return urlService.shortenUrl(requestDto);
     }
 }
